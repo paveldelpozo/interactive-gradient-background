@@ -64,48 +64,48 @@ const bubbles = ref<RadialGradientProps[]>([
 </script>
 
 <template>
-    <GlassmorphismCard
+    <glassmorphism-card
         title="Interactive background"
         description="Options:"
     >
         <div class="field">
-            <label>
-                <input type="checkbox" v-model="noise">
+            <label class="custom-label">
+                <input class="custom-checkbox" type="checkbox" v-model="noise">
                 Noise
             </label>
-            <label>
-                <input type="range" min="0" max="1" step=".1" v-model.number="noiseOpacity">
-                <input type="number" min="0" max="1" step=".1" v-model.number="noiseOpacity"/>
+            <label class="custom-label">
+                <input class="custom-range" type="range" min="0" max="1" step=".1" v-model.number="noiseOpacity">
+                <input class="custom-number" type="number" min="0" max="1" step=".1" v-model.number="noiseOpacity"/>
                 Opacity
             </label>
         </div>
         <div class="field">
-            <label>
-                <input type="checkbox" v-model="blur">
+            <label class="custom-label">
+                <input class="custom-checkbox" type="checkbox" v-model="blur">
                 Goo Blur
             </label>
         </div>
         <div class="field">
-            <label>
-                <input type="checkbox" v-model="showInteractiveBubble">
+            <label class="custom-label">
+                <input class="custom-checkbox" type="checkbox" v-model="showInteractiveBubble">
                 {{ showInteractiveBubble ? 'Show' : 'Hide' }} interactive bubble
             </label>
         </div>
         <div class="bubbles">
             <h3>Bubbles:</h3>
             <div v-for="(bubble, b) in bubbles" :key="b" class="field">
-                <h3>#{{ b + 1 }}</h3>
-                <label>
-                    <input type="checkbox" v-model="bubble.enabled">
-                    Enabled
+                <label class="custom-label">#{{ b + 1 }}</label>
+                <label class="custom-label">
+                    <input class="custom-checkbox" type="checkbox" v-model="bubble.enabled">
+                    &nbsp;
                 </label>
-                <label>
-                    <input type="range" min="5" max="60" step="5" v-model.number="bubble.animationDuration">
-                    <input type="number" min="5" max="60" step="5" v-model.number="bubble.animationDuration"/>
+                <label class="custom-label">
                     Duration
+                    <input class="custom-range" type="range" min="5" max="60" step="5" v-model.number="bubble.animationDuration"  :disabled="!bubble.enabled">
+                    <input class="custom-number" type="number" min="5" max="60" step="5" v-model.number="bubble.animationDuration"  :disabled="!bubble.enabled"/>
                 </label>
                 <label>
-                    <select v-model="bubble.animation" :disabled="!bubble.enabled">
+                    <select class="custom-select" v-model="bubble.animation" :disabled="!bubble.enabled">
                         <option value="moveInCircle">Move in circle</option>
                         <option value="moveVertical">Move vertical</option>
                         <option value="moveHorizontal">Move horizontal</option>
@@ -113,7 +113,7 @@ const bubbles = ref<RadialGradientProps[]>([
                 </label>
             </div>
         </div>
-    </GlassmorphismCard>
+    </glassmorphism-card>
     <gradient-bubbles-bg
         :noise="noise"
         :noise-opacity="noiseOpacity"
@@ -133,15 +133,47 @@ const bubbles = ref<RadialGradientProps[]>([
 
     label {
         @apply flex flex-row gap-2 items-center justify-start;
+    }
 
-        input, select {
-            @apply text-gray-800;
-        }
-        input[type=number] {
-            @apply text-end;
-        }
+    .custom-label {
+        @apply text-lg font-medium text-white mb-2;
+    }
+
+    .custom-checkbox {
+        @apply appearance-none h-5 w-5 bg-white text-blue-600 rounded-md border-2 border-blue-500 focus:ring focus:ring-blue-300;
+    }
+    .custom-checkbox:checked {
+        @apply relative border-white bg-blue-500
+    }
+    .custom-checkbox:checked:after {
+        @apply absolute text-xs font-black text-white w-full h-full flex items-center justify-center;
+        content: '√';
+    }
+
+    .custom-range {
+        @apply appearance-none h-2 bg-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-25;
+    }
+    .custom-range::-webkit-slider-thumb {
+        @apply appearance-none h-5 w-5 bg-blue-500 rounded-full cursor-pointer;
+    }
+    .custom-range::-moz-range-thumb {
+        @apply h-5 w-5 bg-blue-500 rounded-full cursor-pointer;
+    }
+
+    .custom-number {
+        @apply w-full bg-white text-lg text-gray-700 text-end pl-2 py-0 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500 disabled:opacity-25;
+    }
+
+    .custom-select {
+        @apply w-full px-2 py-1 border border-gray-300 bg-white rounded-md shadow-sm text-lg text-gray-700 focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500 disabled:opacity-35;
     }
 }
 
+.bubbles {
+    @apply flex flex-col gap-2 divide-y divide-white/25;
 
+    .field {
+        @apply pt-2 items-start gap-4;
+    }
+}
 </style>

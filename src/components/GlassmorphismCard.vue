@@ -8,25 +8,25 @@ const props = defineProps<Props>()
 
 <template>
     <div v-if="props.title && props.description" class="card">
-<!--        <svg-->
-<!--            viewBox="0 0 100% 100%"-->
-<!--            xmlns='http://www.w3.org/2000/svg'-->
-<!--            class="noise"-->
-<!--        >-->
-<!--            <filter id='noiseFilter'>-->
-<!--                <feTurbulence-->
-<!--                    type='fractalNoise'-->
-<!--                    baseFrequency='0.85'-->
-<!--                    numOctaves='6'-->
-<!--                    stitchTiles='stitch' />-->
-<!--            </filter>-->
+        <svg
+            viewBox="0 0 100% 100%"
+            xmlns='http://www.w3.org/2000/svg'
+            class="noise"
+        >
+            <filter id='noiseFilter'>
+                <feTurbulence
+                    type='fractalNoise'
+                    baseFrequency='0.85'
+                    numOctaves='6'
+                    stitchTiles='stitch' />
+            </filter>
 
-<!--            <rect-->
-<!--                width='100%'-->
-<!--                height='100%'-->
-<!--                preserveAspectRatio="xMidYMid meet"-->
-<!--                filter='url(#noiseFilter)' />-->
-<!--        </svg>-->
+            <rect
+                width='100%'
+                height='100%'
+                preserveAspectRatio="xMidYMid meet"
+                filter='url(#noiseFilter)' />
+        </svg>
         <div class="content">
             <h1>{{ props.title }}</h1>
             <p>{{ props.description }}</p>
@@ -48,7 +48,9 @@ const props = defineProps<Props>()
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     border-radius: 8px;
-    box-shadow: 0 4px 90px rgba(0,0,0,0.1);
+    box-shadow:
+        0 2px 10px rgba(0, 0, 0, .05),
+        0 4px 90px rgba(0, 0, 0, .1);
     overflow: hidden;
     color:#FFF;
     &:before {
@@ -70,7 +72,7 @@ const props = defineProps<Props>()
         filter: blur(.5px);
         mix-blend-mode: hard-light;
     }
-/*
+
     .noise {
         position: absolute;
         top: 0;
@@ -80,7 +82,7 @@ const props = defineProps<Props>()
         z-index: 1;
         opacity: 0.1;
     }
-*/
+
     .content {
         position: relative;
         z-index: 2;
