@@ -27,7 +27,7 @@ const move = () => {
     requestAnimationFrame(move);
 }
 
-const mouseMoveHandler = (event) => {
+const mouseMoveHandler = (event: MouseEvent) => {
     mouse.value = {
         x: event.clientX,
         y: event.clientY,

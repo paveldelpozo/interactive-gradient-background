@@ -3,12 +3,13 @@ import NoiseBg from "@/components/SVGFilters/NoiseBg.vue";
 import RadialGradientBubbleInteractive from "@/components/RadialGradientBubbleInteractive.vue";
 import GooBlur from "@/components/SVGFilters/GooBlurBg.vue";
 import RadialGradientBubble from "@/components/RadialGradientBubble.vue";
+import type {RadialGradientProps} from "@/interfaces/RadialGradientProps";
 
 interface Props {
     noise: boolean
     noiseOpacity: number
     blur: boolean
-    bubbles: RadialGradientBubble[]
+    bubbles: RadialGradientProps[]
     colorFrom?: string
     colorTo?: string
     bgGradientDirection?: string
