@@ -3,10 +3,11 @@ import {ref} from "vue";
 import type {RadialGradientProps} from "@/interfaces/RadialGradientProps";
 import GlassmorphismCard from "@/components/GlassmorphismCard.vue";
 import GradientBubblesBg from "@/components/GradientBubblesBg.vue";
+import GitHub from "@/components/GitHub.vue";
 
-const noise = ref(false)
-const noiseOpacity = ref(.9)
-const blur = ref(false)
+const noise = ref(true)
+const noiseOpacity = ref(.7)
+const blur = ref(true)
 const showInteractiveBubble = ref(true)
 
 const bubbles = ref<RadialGradientProps[]>([
@@ -65,7 +66,7 @@ const bubbles = ref<RadialGradientProps[]>([
 
 <template>
     <glassmorphism-card
-        title="Interactive background"
+        title="Interactive gradient background"
         description="Options:"
     >
         <div class="field">
@@ -125,6 +126,7 @@ const bubbles = ref<RadialGradientProps[]>([
         interactive-bubble-color="140, 100, 255"
         :show-interactive-bubble="showInteractiveBubble"
     />
+    <git-hub color="#1D1D1D" bg-color="#f3f3f3" url="https://github.com/paveldelpozo/interactive-gradient-background" />
 </template>
 
 <style lang="scss">
